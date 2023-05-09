@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { Container, H1, Image, Input, InputLabel, Button, ContainerItens,User } from "./style";
+import { Container, H1, Image, Input, InputLabel, Button, ContainerItens ,User } from "./style";
 import Avatar from './assets/avatar.svg'
 import Arrow from './assets/arrow.svg';
 import Trash from './assets/trash.svg';
