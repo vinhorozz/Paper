@@ -9,9 +9,9 @@ const ProductCard = ({ product }) => {
       <div className="card-body">
       
                 <h5 className="card-title">{product.name}</h5>
-                <p className="card-text">R${product.price}</p>
+                <p className="card-text">R$ {product.price}</p>
          
-                <button className="btn btn-primary">Add to Cart</button>
+                <button className="btn btn-primary">Adicionar ao carrinho</button>
                 
       </div>
     </div>
