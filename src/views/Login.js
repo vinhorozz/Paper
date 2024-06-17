@@ -1,19 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, H1, Image, Input, Button, ContainerItens } from "../style";
 import Avatar from '../assets/avatar.svg';
 import Arrow from '../assets/arrow.svg';
 import { useUserController } from '../controllers/UserController';
-import { useNavigate } from 'react-router-dom';//permite a navegação programatica utilizando as funções fechas dentro das constantes, sem usar o "link" <a>;
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const { users, addNewUser, changeInputUserName, changeInputSenha } = useUserController();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
-  const navigate = useNavigate();// criar variável que recebe a função "navegate" do React, e assim, poderá ser usada em cada "button"
-
-//Funções de Manipulação de Clique no "button"
+  // Funções de Manipulação de Clique no "button"
   const handleAccessClick = () => {
-    addNewUser();
-    navigate('/Produtos'); // passao o linK como paramentro para a variável "navegate", e o passará  para a Função "useNavegate"
+    if (username === '' || password === '') {
+      alert('Por favor, preencha os campos de Usuário e Senha antes de acessar.');
+    } else {
+      addNewUser();
+      navigate('/Produtos');
+    }
   };
 
   const handleForgotPasswordClick = () => {
@@ -29,8 +34,21 @@ const Login = () => {
     <Container>
       <ContainerItens>
         <H1>Login</H1>
-        <Input onChange={changeInputUserName} placeholder="Usuário" />
-        <Input onChange={changeInputSenha} placeholder="Senha" type="password" />
+        <Input 
+          onChange={(e) => {
+            changeInputUserName(e);
+            setUsername(e.target.value);
+          }} 
+          placeholder="Usuário" 
+        />
+        <Input 
+          onChange={(e) => {
+            changeInputSenha(e);
+            setPassword(e.target.value);
+          }} 
+          placeholder="Senha" 
+          type="password" 
+        />
         <Button onClick={handleAccessClick}>
           Acessar <img alt='seta' src={Arrow} />
         </Button>

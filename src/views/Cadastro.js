@@ -20,12 +20,20 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  const handleInputChange = (event) => { //para atualizar o estado do formulário com base no "name" e "value" dos inputs.
+  const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleConfirmClick = () => {//atualmente registra os dados no console e navega para /home.
+  const handleConfirmClick = () => {
+    // Verificar se todos os campos estão preenchidos
+    const emptyFields = Object.entries(formData).filter(([key, value]) => value === '');
+
+    if (emptyFields.length > 0) {
+      alert('Por favor, preencha todos os campos antes de confirmar.');
+      return;
+    }
+
     // INSERIR Lógica para salvar os dados do usuário
     console.log('Dados do formulário:', formData);
     // INSERIR Adicione aqui a lógica para enviar os dados ao backend
@@ -42,7 +50,7 @@ const Login = () => {
               <td><Input name="userName" onChange={handleInputChange} placeholder="Usuário" type="text" /></td>
               <td><Input name="cpf" onChange={handleInputChange} placeholder="CPF" type="text" /></td>
               <td><Input name="rg" onChange={handleInputChange} placeholder="RG" type="text" /></td>
-              <td><Input name="nascimento" onChange={handleInputChange} placeholder="Nascimento" type="date" /></td>
+              <td><Input name="nascimento" onChange={handleInputChange} placeholder="Nascimento" /></td>
             </tr>
             <tr>
               <td><Input name="endereco" onChange={handleInputChange} placeholder="Endereço" type="text" /></td>

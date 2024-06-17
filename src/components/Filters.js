@@ -1,82 +1,73 @@
-// src/components/Filters.js
-import React, { useState } from 'react';
+//src\components\Filters.js
+ 
+  import React, { useState } from 'react';
 
-const Filters = ({ onCategoryChange }) => {
-  const [selectedCategories, setSelectedCategories] = useState([]);
-
-  const handleCategoryChange = (event) => {
-    const { id, checked } = event.target;
-    const newSelectedCategories = checked
-      ? [...selectedCategories, id]
-      : selectedCategories.filter((category) => category !== id);
-
-    setSelectedCategories(newSelectedCategories);
-    onCategoryChange(newSelectedCategories);
-  };
-
-  return (
-   <div className="p-5 filters-container">
-      <h4>Filtro</h4>
-      <form>
+  const Filters = ({ onCategoryChange, onPriceChange }) => {
+    const [priceRange, setPriceRange] = useState([0, 1000]);
+  
+    const handleCategoryChange = (e) => {
+      const selectedCategories = Array.from(e.target.form.elements)
+        .filter(input => input.type === 'checkbox' && input.checked)
+        .map(input => input.id);
+      onCategoryChange(selectedCategories);
+    };
+  
+    const handlePriceChange = (e) => {
+      const newPriceRange = [0, parseInt(e.target.value, 10)];
+      setPriceRange(newPriceRange);
+      onPriceChange(newPriceRange);
+    };
+  
+    return (
+      <div className="p-5 filters-container">
+        <h4>Filtro</h4>
+        <form>
         <div className="form-group">
           <label>Categorias</label>
-          <div className="form-check">
-            <input className="form-check-input" type="checkbox" id="category1" />
-            <label className="form-check-label" htmlFor="category1">Eletrodomésticos</label>
-          </div>
-          <div className="form-check">
-            <input className="form-check-input" type="checkbox" id="category2" />
-            <label className="form-check-label" htmlFor="category2">Calçados</label>
-          </div>
-          <div className="form-check">
-            <input className="form-check-input" type="checkbox" id="category3" />
-            <label className="form-check-label" htmlFor="category3">Informática</label>
-          </div>
-          <div className="form-check">
-            <input className="form-check-input" type="checkbox" id="category4" />
-            <label className="form-check-label" htmlFor="category3">Brinquedos</label>
-          </div>
-          <div className="form-check">
-            <input className="form-check-input" type="checkbox" id="category5" />
-            <label className="form-check-label" htmlFor="category3">Perfumes</label>
-          </div>
-          <div className="form-check">
-            <input className="form-check-input" type="checkbox" id="category6" />
-            <label className="form-check-label" htmlFor="category3">Vestuário</label>
-          </div>
-          <div className="form-check">
-            <input className="form-check-input" type="checkbox" id="category7" />
-            <label className="form-check-label" htmlFor="category3">Camping</label>
-          </div>
-          <div className="form-check">
-            <input className="form-check-input" type="checkbox" id="category7" />
-            <label className="form-check-label" htmlFor="category3">Churrasco</label>
-          </div>
-       
-          <div className="form-check">
-            <input className="form-check-input" type="checkbox" id="category8" />
-            <label className="form-check-label" htmlFor="category3">Utensílios</label>
-          </div>
-          <div className="form-check">
-            <input className="form-check-input" type="checkbox" id="category9" />
-            <label className="form-check-label" htmlFor="category3">Ferramentas</label>
-          </div>
-        </div>
-        <div className="form-check">
-            <input className="form-check-input" type="checkbox" id="category10" />
-            <label className="form-check-label" htmlFor="category3">Cama, Mesa e Banho</label>
-          </div>
-        <br></br>
 
-        <div className="form-group">
-          <label htmlFor="priceRange">Faixa de preço</label>
-          <input type="range" className="form-control-range" id="priceRange" />
-        </div>
 
-        <button type="submit" className="btn btn-primary">Aplicar filtro</button>
-      </form>
-    </div>
-  );
-};
+          {['Bolsas',
+            'Brinquedos',
+            'Calçados',
+            'Cama, Mesa e Banho',
+            'Camping',
+            'Churrasco',
+            'Eletrodomésticos',
+            'Ferramentas',
+            'Informática',
+            'Perfumes',
+            'Utensílios',
+            ].map((category, index) => (
+<div className="form-check" key={index}>             
+	 <input className="form-check-input" type="checkbox" id={category} onChange={handleCategoryChange}/>
+ 	<label className="form-check-label" htmlFor={category}>{category} </label>
+</div>
+          ))}
 
-export default Filters;
+     </div>
+
+  
+
+
+          <div className="form-group">
+            <label htmlFor="priceRange">Faixa de preço</label>
+            <input 
+              type="range" 
+              className="form-control-range" 
+              id="priceRange" 
+              min="0" 
+              max="1000" 
+              step="50" 
+              value={priceRange[1]} 
+              onChange={handlePriceChange} 
+            />
+            <div>Até R$ {priceRange[1]}</div>
+          </div>
+        </form>
+      </div>
+    );
+  };
+  
+  export default Filters;
+  
+

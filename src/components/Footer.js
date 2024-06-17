@@ -1,9 +1,10 @@
-import React from 'react';
-import { FooterContainer, FooterSection, FooterTitle, FooterText } from '../style';
+// src/components/Footer.js
+import React from "react";
+import { Footer, FooterContainer, FooterTitle, FooterText, FooterSection } from "../style";
 
-const Footer = () => {
+const FooterComponent = () => {
   return (
-    <footer>
+    <Footer>
       <FooterContainer>
         <FooterSection>
           <FooterTitle>Endereço</FooterTitle>
@@ -23,8 +24,8 @@ const Footer = () => {
           <FooterText>Direitos do Consumidor</FooterText>
         </FooterSection>
       </FooterContainer>
-    </footer>
+    </Footer>
   );
 };
 
-export default Footer;
+export default FooterComponent;

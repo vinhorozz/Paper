@@ -19,7 +19,7 @@ const Home = () => {
           <tb>
           <p></p>
           </tb>
-          <Footer/>       
+            <Footer/>
     </Container>
     
   );
