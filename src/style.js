@@ -21,6 +21,7 @@ export const ContainerItens = styled.div`
   height: auto;
   width: auto; /* Ajuste conforme necessário */
 `;
+//-------------------------------------------------------------------
 export const ContainerPrincipal = styled.div`
     background: url("${Background}");
     background-size: cover;
@@ -30,47 +31,90 @@ export const ContainerPrincipal = styled.div`
     min-height: 500svh;
     padding: 20px;
     height: fit-content;
+    min-height: 500vh;
+    width: 100%;
+
 `;
 export const ProductPageContainer = styled.div`
   background: rgba(255, 255, 255, 0.6);
   border-radius: 20px;
   display: flex;
-  flex: 1;
+
   flex-direction: column;
   padding: 20px;  
+  width: 100%;
+  max-width: 1200px;
+  box-sizing: border-box;
+
 `;
 
+
+
 export const ContainerProductItens = styled.div`
+ 
   background: rgba(255, 255, 255, 0.6);
   border-radius: 20px;
   display: flex;
-  flex: 1;
+  flex-direction: column;
   padding: 20px;
   margin-top: 20px;  
-  width: 78%;
+  width: 100%;
+  height:2500px;
+  max-width: 78%;
   margin-left: auto;
+            margin-right: auto;
+            box-sizing: border-box;
+            overflow-y: auto; 
+            max-height: 95vh; 
             position:absolute;
-            right: 20px;
+          right: 20px;
+          box-sizing: border-box; /* Inclui padding e border no cálculo do width */
   `;
-
+//----------------------filter-------------------
 export const FiltersContainer = styled.div`
   background: rgba(255, 255, 255, 0.6);
   border-radius: 20px;
   display: flex;
-  flex: 1;
-  padding: auto;
-    text-size-adjust:initial;
-    align-items:flex-end; 
-    align-self: start;
-  margin-top: 20px;  
+  flex-direction: column;
+  left: 1%;
+  margin-top: 20px;
+  position: absolute;
+  align-items: flex-start;
+  text-size-adjust: initial;
+  flex-wrap: nowrap; /* Impede que os itens quebrem para a próxima linha */
   width: 18%;
-  margin-right: 20px;
-  
-             position:absolute;
-             left: 20px;
+  box-sizing: border-box;
+  padding: 10px;
+  overflow: hidden; /* Garante que o conteúdo não ultrapasse a borda */
 `;
 
+export const FilterItem = styled.div`
+  display: flex;
+  align-items: center; /* Alinha o checkbox e o label verticalmente no centro */
+  margin-bottom: 5px; /* Espaçamento entre itens */
+  width: 100%;
+`;
 
+export const FilterLabel = styled.label`
+ margin-left: 1px; /* Espaçamento entre o checkbox e o label */
+ word-break: break-word; /* Quebra o texto se for muito longo */
+`;
+
+export const FilterCheckbox = styled.input`
+  margin-right: 10px; /* Espaçamento entre o checkbox e o label */
+`;
+
+export const FilterPrice = styled.div`
+padding-right:10px;
+box-sizing: border-box; /* Garante que o padding seja considerado no cálculo da largura */
+`;
+
+export const InputSlide = styled.input`
+  margin-right: 10px; /* Espaçamento entre o checkbox e o label */
+  max-width:65%;
+  box-sizing: border-box; /* Garante que o padding seja considerado no cálculo da largura */
+`;
+//-----------------------------------------------------------
 export const CoverImage = styled.img`
   width: 100%;
   height: auto;
@@ -172,9 +216,9 @@ export const User = styled.li`
     cursor: pointer;
   }
 `;
-
+//-----------------------------------------------------------------------
 export const Footer = styled.footer`
-  background-color: nome;
+  background-color: none;
   padding: 20px 0;
   margin-top: 20px;
   width: 100%;
@@ -208,7 +252,7 @@ export const FooterText = styled.p`
   color: white;
   
 `;
-
+//-------------------------------------------------------------------
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
@@ -232,4 +276,74 @@ export const LinkButton = styled(Link)`
   text-align: center;
 `;
 
+//------------------------------------------------------------------
+export const TableContainer = styled.div`
+  width: 100%;
+  max-width: 100%;
+ 
+`;
 
+export const TableRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap; /* Permite que os itens quebrem para a próxima linha, se necessário */
+  margin-bottom: 1px;
+  
+`;
+
+export const TableCell = styled.div`
+  flex: 1;
+  padding: 1px;
+  min-width: 100px; /* Tamanho mínimo para evitar células muito pequenas */
+  box-sizing: border-box;
+  margin-right: 10px;
+`;
+
+export const TableCellInput = styled.input`
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 14px;
+  width: 100%; /* Ajusta para preencher o espaço disponível */
+  max-width: 342px;
+  height: 58px;
+  border: none;
+  outline: none;
+  padding-left: 25px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 28px;
+  margin: 4px;
+  color: #FFFFFF;
+  box-sizing: border-box; /* Inclui padding e border no cálculo do width */
+`;
+
+export const TableCellButton = styled.button`
+  width: 100%;
+  max-width: 342px;
+  height: 58px;
+  margin: 4px;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 14px;
+  border: none;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 28px;
+  cursor: pointer;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:active {
+    opacity: 0.5;
+  }
+
+  box-sizing: border-box; /* Inclui padding e border no cálculo do width */
+`;

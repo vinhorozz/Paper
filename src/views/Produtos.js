@@ -1,7 +1,9 @@
+//src\views\Produtos.js
 import React, { useState, useEffect } from 'react';
 import { ContainerPrincipal, Container, ContainerItens, FiltersContainer, ProductPageContainer,ContainerProductItens } from "../style";
 import Filters from '../components/Filters';
 import ProductList from '../components/ProductList';
+import ProductCard from '../components/ProductCard';
 
 const Produtos = () => {
   const [products, setProducts] = useState([]);
@@ -32,7 +34,7 @@ const Produtos = () => {
     let newFilteredProducts = products;
 
     if (selectedCategories.length > 0) {
-      newFilteredProducts = newFilteredProducts.filter(product =>
+      newFilteredProducts = newFilteredProducts.filter(product =>           
         selectedCategories.includes(product.category)
       );
     }
@@ -54,17 +56,17 @@ const Produtos = () => {
 
   return (
 
-<ContainerPrincipal>  
-                <FiltersContainer>
-                    <Filters onCategoryChange={handleCategoryChange} onPriceChange={handlePriceChange} />
-                </FiltersContainer>
-     
-                <ContainerProductItens>                  
-                          <ProductList products={filteredProducts} />
-                </ContainerProductItens>  
-</ContainerPrincipal>
-  
+<ContainerPrincipal>
+    
+        <Filters onCategoryChange={handleCategoryChange} onPriceChange={handlePriceChange} />
+    
+      <ContainerProductItens>
+        <ProductList products={filteredProducts} />
+      </ContainerProductItens>
+    </ContainerPrincipal>
   )
+  
+  
 };
 
 export default Produtos;

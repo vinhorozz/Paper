@@ -2,11 +2,15 @@ import React, { useState } from 'react';
 import { Container, H1, Image, Input, Button } from "../style";
 import people from '../assets/people.svg';
 import { useUserController } from '../controllers/UserController'; // Importar o controlador de usuário
+import { useNavigate } from 'react-router-dom';
+
+
 
 const Autenticacao = () => {
   const [emailInput, setEmailInput] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const {changeInputEmail, registeredEmail } = useUserController();
+  const navigate = useNavigate();
 
   const handleEmailChange = (e) => {
     setEmailInput(e.target.value);
@@ -23,6 +27,11 @@ const Autenticacao = () => {
     }
   };
 
+
+  const handleBackClick = () => {
+    navigate('/login');
+  };
+
   return (
     <Container>
       <Image alt="people" src={people} />
@@ -31,6 +40,7 @@ const Autenticacao = () => {
       <form onSubmit={handleSubmit}>
         <Input onChange={handleEmailChange} placeholder="Confirme seu e-mail cadastrado" type="e-mail" value={emailInput} />
         <Button type="submit">Enviar e-mail de autenticação</Button>
+        <Button type="submit" onClick={handleBackClick}>Voltar</Button>
       </form>
       
       {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}

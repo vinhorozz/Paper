@@ -4,6 +4,7 @@ import Home from './views/Home';
 import Login from './views/Login';
 import Produtos from './views/Produtos';
 import Cadastro from './views/Cadastro';
+
 import Autenticacao from './views/Autenticacao';
 
 
