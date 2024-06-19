@@ -1,3 +1,5 @@
+// src/components/Filters.js
+
 import React, { useState, useEffect } from 'react';
 import { FiltersContainer, FilterItem, FilterLabel, FilterCheckbox, FilterPrice, InputSlide } from '../style';
 import categories from '../constantes/Categories';
@@ -22,7 +24,13 @@ const Filters = ({ onCategoryChange, onPriceChange, selectedCategories }) => {
   };
 
   const handlePriceChange = (e) => {
-    const newRange = [Number(e.target.value[0]), Number(e.target.value[1])];
+    const newRange = [Number(e.target.value), priceRange[1]];
+    setPriceRange(newRange);
+    onPriceChange(newRange);
+  };
+
+  const handlePriceChangeMax = (e) => {
+    const newRange = [priceRange[0], Number(e.target.value)];
     setPriceRange(newRange);
     onPriceChange(newRange);
   };
@@ -45,15 +53,20 @@ const Filters = ({ onCategoryChange, onPriceChange, selectedCategories }) => {
       </div>
       <FilterPrice>
         <h4>Faixa de Preço</h4>
-        <InputSlide
-          type="range"
-          min="0"
-          max="1000"
-          value={priceRange}
-          onChange={(e) => handlePriceChange(e)}
-          step="10"
-        />
-        <span>{priceRange[0]} - {priceRange[1]}</span>
+        
+         
+        <div>
+          <span></span>
+          <input
+            type="range"
+            min="0"
+            max="1000"
+            value={priceRange[1]}
+            onChange={(e) => handlePriceChangeMax(e)}
+            step="10"
+          />
+          <span>{priceRange[1]}</span>
+        </div>
       </FilterPrice>
     </FiltersContainer>
   );
