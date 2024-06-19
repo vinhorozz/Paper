@@ -10,14 +10,13 @@ import Footer from './components/Footer';
 const App = () => {
   return (
     <AuthProvider>
-      <CartProvider>
-        
-            <GlobalStyle />
-            <NavBar />
-            <Routes/>            
-        
-            <Router/>   
-      </CartProvider>
+        <CartProvider>
+              <Router>
+                    <GlobalStyle />
+                    <NavBar />
+                    <Routes/>
+              </Router>
+        </CartProvider>
     </AuthProvider>
   );
 };
